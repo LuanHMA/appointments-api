@@ -1,0 +1,32 @@
+{
+  "name": "appointments-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "knex": "tsx ./node_modules/knex/bin/cli.js --knexfile knexfile.ts",
+    "migrate:make": "tsx ./node_modules/knex/bin/cli.js --knexfile knexfile.ts migrate:make",
+    "migrate:latest": "tsx ./node_modules/knex/bin/cli.js --knexfile knexfile.ts migrate:latest",
+    "migrate:rollback": "tsx ./node_modules/knex/bin/cli.js --knexfile knexfile.ts migrate:rollback",
+    "seed:make": "tsx ./node_modules/knex/bin/cli.js --knexfile knexfile.ts seed:make",
+    "seed:run": "tsx ./node_modules/knex/bin/cli.js --knexfile knexfile.ts seed:run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "knex": "^3.1.0",
+    "mysql2": "^3.20.0",
+    "zod": "^4.3.6"
+  }
+}
