@@ -9,4 +9,4 @@ export interface BarberTable {
 
 export type CreateBarberDTO = Omit<BarberTable, "id" | "created_at" | "updated_at">
 
-export type UpdateBarberDTO = Omit<BarberTable, "created_at" | "updated_at">
+export type UpdateBarberDTO = Omit<BarberTable, "created_at" | "updated_at" | "email">
