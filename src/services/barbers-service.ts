@@ -1,6 +1,6 @@
 import { knex } from "../database/connection";
 import { BarberTable, CreateBarberDTO, UpdateBarberDTO } from "../database/types/barbers-table";
-import { AppError, BadRequestError } from "../errors/app-error";
+import { BadRequestError } from "../errors/app-error";
 
 export class BarbersService {
     async index() {

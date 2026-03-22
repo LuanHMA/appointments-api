@@ -1,12 +1,10 @@
 import type { Knex } from "knex";
 
-
-
 export async function up(knex: Knex): Promise<void> {
     await knex.schema.createTable("appointments", (table) => {
         table.increments("id").primary(),
-        table.integer("barber_id").references("id").inTable("barbers").notNullable(),
-        table.integer("service_id").references("id").inTable('services').notNullable(),
+        table.integer("barber_id").unsigned().references("id").inTable("barbers").notNullable(),
+        table.integer("catalog_id").unsigned().references("id").inTable("catalog").notNullable(),
         table.string("customer_name", 100).notNullable(),
         table.string("customer_phone", 11).notNullable(),
         table.timestamp("started_at").notNullable(),
@@ -21,4 +19,3 @@ export async function up(knex: Knex): Promise<void> {
 export async function down(knex: Knex): Promise<void> {
     await knex.schema.dropTable("appointments")
 }
-
