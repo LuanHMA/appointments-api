@@ -1,6 +1,8 @@
+import { isShiftWithinOperatingHours } from './../utils/functions';
 import { knex } from "../database/connection";
 import { BarberWorkingHoursTable, CreateBarberWorkingHours, UpdateBarberWorkingHours } from "../database/types/barber-working-hours-table";
 import { BarberTable } from "../database/types/barbers-table";
+import { OpeningHoursTable } from "../database/types/opening-hours-table";
 import { BadRequestError, NotFoundError } from "../errors/app-error";
 
 export class BarberWorkingHoursService {
@@ -37,6 +39,14 @@ export class BarberWorkingHoursService {
     }
 
     async create(barber: CreateBarberWorkingHours) {
+        const openingHours = await knex<OpeningHoursTable>("opening_hours")
+            .where({ week_day: barber.week_day })
+            .first()
+
+        if (!openingHours) {
+            throw new NotFoundError("Nenhum horário de funcionamento encontrado com esse dia da semana")
+        }
+
         const barberAlreadyExists = await knex<BarberTable>("barbers")
             .where({ id: barber.barber_id })
             .first()
@@ -53,7 +63,14 @@ export class BarberWorkingHoursService {
             throw new BadRequestError("Esse dia da semana ja foi cadastrado")
         }
 
+        const isWithinOperatingHours = isShiftWithinOperatingHours(
+            { opening_hour: openingHours.opening_hour, closing_hour: openingHours.closing_hour },
+            { start_time: barber.start_time, end_time: barber.end_time }
+        )
 
+        if (!isWithinOperatingHours) {
+            throw new BadRequestError("O horário informado não está dentro dos horários de funcionamento")
+        }
 
         await knex<BarberWorkingHoursTable>("barbers_working_hours")
             .insert(barber)

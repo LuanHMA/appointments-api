@@ -8,6 +8,6 @@ export interface OpeningHoursTable {
     updated_at: string
 }
 
-export type CreateOpeningHours = Omit<OpeningHoursTable, "id" | "created_at" | "updated_at">
+export type CreateOpeningHours = Omit<OpeningHoursTable, "id" | "created_at" | "updated_at" | "is_open">
 
 export type UpdateOpeningHours = Omit<OpeningHoursTable, "created_at" | "updated_at">

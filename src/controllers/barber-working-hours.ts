@@ -4,7 +4,6 @@ import z from "zod";
 
 export class BarberWorkingHoursController {
     private barberWorkingHoursService = new BarberWorkingHoursService()
-    private weekDays = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]
 
     async index(req: Request, res: Response, next: NextFunction) {
         try {
