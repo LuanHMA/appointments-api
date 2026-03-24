@@ -1,7 +1,7 @@
 export interface BarberWorkingHoursTable {
     id: number
     barber_id: number
-    week_day: string
+    week_day: number
     start_time: string
     end_time: string
     created_at: string
@@ -10,4 +10,4 @@ export interface BarberWorkingHoursTable {
 
 export type CreateBarberWorkingHours = Omit<BarberWorkingHoursTable, "id" | "created_at" | "updated_at">
 
-export type UpdateBarberWorkingHours = Omit<BarberWorkingHoursTable, "created_at" | "updated_at">
+export type UpdateBarberWorkingHours = Omit<BarberWorkingHoursTable, "created_at" | "updated_at" | "barber_id" | "barber_id">

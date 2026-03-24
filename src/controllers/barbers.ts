@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 import z from "zod"
-import { BarbersService } from "../services/barbers-service"
+import { BarbersService } from "../services/barbers"
 
 export class BarbersController {
     private barbersService = new BarbersService()

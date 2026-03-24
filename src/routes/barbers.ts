@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { BarbersController } from "../controllers/barbers-controller";
+import { BarbersController } from "../controllers/barbers";
 
 export const barberRoutes = Router()
 
