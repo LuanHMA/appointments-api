@@ -1,8 +1,7 @@
 export interface AppointmentsTable {
     id: number,
-    date: string,
     barber_id: number,
-    service_id: number,
+    catalog_id: number,
     customer_name: string,
     customer_phone: string,
     started_at: string,
@@ -12,6 +11,14 @@ export interface AppointmentsTable {
     updated_at: string
 }
 
-export type CreateAppointmentsDTO = Omit<AppointmentsTable, "id" | "created_at" | "updated_at">
+export type CreateAppointmentsDTO = {
+    barber_id: number,
+    catalog_id: number,
+    customer_name: string,
+    customer_phone: string,
+    started_at: string,
+    finished_at: string,
+    week_day: number
+}
 
 export type UpdateAppointmentsDTO = Omit<AppointmentsTable, "created_at" | "updated_at">
